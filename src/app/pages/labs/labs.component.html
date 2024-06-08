@@ -22,14 +22,17 @@
 
 <div>
   <h3> {{ 'pro'.repeat(3) }} </h3>
-  <input type="text" [value]="name" [(ngModel)]="name">
+  <!-- <input type="text" [value]="name()" [(ngModel)]="name"> -->
   <p>
-    Name: {{ name }}
+    Name: {{ name() }}
   </p>
   <button style="background-color: aqua;" (click)="showAlert('CLICK')" type="button">Click</button>
   <button style="background-color: red;" (dblclick)="showAlert('DOUBLE CLICK')" type="button">Double click</button>
+  <p>changeHandler</p>
   <input type="text" (change)="changeHandler($event)">
+  <p>keydownHandler</p>
   <input type="text" (keydown)="keydownHandler($event)">
+  <p>keydown.enter</p>
   <input type="text" (keydown.enter)="showAlert('You press enter!')">
   
 </div>

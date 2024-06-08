@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,13 +13,17 @@ import { FormsModule } from '@angular/forms';
 export class LabsComponent {
   title = 'todoapp';
   tasks = ['Install angular', 'Create components', 'Run app'];
-  name: string = "Julio Cesar";
+  name = signal("Julio Cesar");
 
   showAlert(text: string): void {
     alert(text);
   }
 
   changeHandler(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const newName = input.value;
+    this.name.set(newName);
+    // const newName = this.name.set('Juuz Kure');
     console.group('changeHandler');
     console.log('event', event);
     console.groupEnd();
