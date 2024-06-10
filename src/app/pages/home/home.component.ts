@@ -38,7 +38,7 @@ export class HomeComponent {
 
     const input = event.target as HTMLInputElement;
 
-    if (input.value !== '') {
+    if (input.value.trim() !== '') {
       this.addTask(input.value);
       input.value = '';
     }
