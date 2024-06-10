@@ -62,7 +62,9 @@
         <!-- This should be `0 items left` by default -->
         <span class="todo-count"><strong> {{ tasks().length }} </strong> 
           <span *ngIf="tasks().length >=0 && tasks().length !== 1">items</span> 
-          <span *ngIf="tasks().length === 1">item</span> left</span>
+          <span *ngIf="tasks().length === 1">item</span> 
+          left
+        </span>
         
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
@@ -81,3 +83,6 @@
       </footer>
     </div>
   </section>
+
+  <input type="color" [formControl]="colorControl">
+  <p>color: {{ colorControl.value }} </p>
