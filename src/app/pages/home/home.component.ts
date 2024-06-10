@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../models/task.model';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -33,18 +33,32 @@ export class HomeComponent {
     );
 
   colorControl = new FormControl();
+  newTaskControl = new FormControl('', {
+    nonNullable: true,
+    validators: [Validators.required]
+  });
 
-  changeHandler(event: Event): void {
+  changeHandler(): void {
 
-    const input = event.target as HTMLInputElement;
-
-    if (input.value.trim() !== '') {
-      this.addTask(input.value);
-      input.value = '';
+    if (this.newTaskControl.valid && this.newTaskControl.value.trim() !== '') {
+      this.addTask(this.newTaskControl.value);
+      this.newTaskControl.setValue('');
     }
 
 
   }
+
+  // changeHandler(event: Event): void {
+
+  //   const input = event.target as HTMLInputElement;
+
+  //   if (input.value.trim() !== '') {
+  //     this.addTask(input.value);
+  //     input.value = '';
+  //   }
+
+
+  // }
 
   addTask(title: string): void {
     const newTask: Task = {
