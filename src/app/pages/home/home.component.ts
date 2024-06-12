@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
     nonNullable: true
   });
 
-  isEdit: boolean = false;
   injector = inject(Injector);
 
   constructor() {
