@@ -37,6 +37,11 @@ export class HomeComponent {
     nonNullable: true,
     validators: [Validators.required]
   });
+  widthControl = new FormControl(50, {
+    nonNullable: true
+  });
+
+  isEdit: boolean = false;
 
   changeHandler(): void {
 
@@ -97,10 +102,49 @@ export class HomeComponent {
   updateTask(index: number) {
     this.tasks.update((tasks) => {
       return tasks.map((task, position) => {
-        if(index === position) {
+        if (index === position) {
           return {
             ...task,
             completed: !task.completed
+          }
+        }
+        return task;
+      })
+    });
+  }
+
+  editTask(index: number) {
+    // console.group('editTask');
+    // console.groupEnd();
+
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (index === position) {
+          return {
+            ...task,
+            editing: true
+          }
+        }
+        return {
+          ...task,
+          editing: false
+        };
+      })
+    });
+
+  }
+
+  saveEditTask(event: any, index: number) {
+    console.group('saveEditTask');
+    console.log('event', event);
+    console.groupEnd();
+    this.tasks.update((tasks) => {
+      return tasks.map((task, position) => {
+        if (index === position) {
+          return {
+            ...task,
+            title: event.target.value,
+            editing: false
           }
         }
         return task;

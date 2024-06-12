@@ -337,6 +337,12 @@
   .info a:hover {
     text-decoration: underline;
   }
+
+  .box {
+    height: 10px;
+    display: block;
+    background-color: red;
+  }
   
   /*
       Hack to remove background from Mobile Safari.
