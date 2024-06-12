@@ -20,6 +20,9 @@
         /> -->
       </div>
     </header>
+
+    <h1> {{ filter() }} </h1>
+
     <div class="container todoapp-wrapper">
       <pre>
         <code>
@@ -30,7 +33,7 @@
       <section class="main">
         <ul class="todo-list">
 
-          <li (dblclick)="editTask(i)" *ngFor="let task of tasks(); index as i" [class.completed]="task.completed" [class.editing]="task.editing">
+          <li (dblclick)="editTask(i)" *ngFor="let task of tasksByFilter(); index as i" [class.completed]="task.completed" [class.editing]="task.editing">
             <div class="view">
               <input class="toggle" type="checkbox" [checked]="task.completed" (change)="updateTask(i)" />
               <label> {{ task.title }} </label>
@@ -68,22 +71,22 @@
       <!-- This footer should be hidden by default and shown when there are todos -->
       <footer class="footer">
         <!-- This should be `0 items left` by default -->
-        <span class="todo-count"><strong> {{ tasks().length }} </strong> 
-          <span *ngIf="tasks().length >=0 && tasks().length !== 1">items</span> 
-          <span *ngIf="tasks().length === 1">item</span> 
+        <span class="todo-count"><strong> {{ tasksByFilter().length }} </strong> 
+          <span *ngIf="tasksByFilter().length >=0 && tasksByFilter().length !== 1">items</span> 
+          <span *ngIf="tasksByFilter().length === 1">item</span> 
           left
         </span>
         
         <!-- Remove this if you don't implement routing -->
         <ul class="filters">
           <li>
-            <a routerLink="/" class="selected">All</a>
+            <a routerLink="/"  [class.selected]="filter() === 'all'" class="selected" (click)="changeFilter('all')">All</a>
           </li>
           <li>
-            <a routerLink="/pending">Pending</a>
+            <a routerLink="/pending" [class.selected]="filter() === 'pending'" (click)="changeFilter('pending')">Pending</a>
           </li>
           <li>
-            <a routerLink="/completed">Completed</a>
+            <a routerLink="/completed" [class.selected]="filter() === 'completed'" (click)="changeFilter('completed')">Completed</a>
           </li>
         </ul>
         <!-- Hidden if no completed items are left ↓ -->
