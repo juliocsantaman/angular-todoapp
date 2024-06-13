@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class LabsComponent {
   title = 'todoapp';
   tasks = ['Install angular', 'Create components', 'Run app'];
-  name = signal("Julio Cesar");
+  name = signal("julio cesar");
 
   showAlert(text: string): void {
     alert(text);
