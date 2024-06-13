@@ -4,7 +4,7 @@
   <h3>New for</h3>
   <ul>
     @for (item of tasks; track $index) {
-      <li> {{ item }} - {{ $index }} </li>
+    <li> {{ item }} - {{ $index }} </li>
     }
   </ul>
 </div>
@@ -14,7 +14,7 @@
   <ul>
     <li *ngFor="let item of tasks">
       {{ item }}
-    </li>  
+    </li>
   </ul>
 </div>
 
@@ -34,5 +34,16 @@
   <input type="text" (keydown)="keydownHandler($event)">
   <p>keydown.enter</p>
   <input type="text" (keydown.enter)="showAlert('You press enter!')">
-  
+
+</div>
+
+<hr>
+
+<div>
+  <h3>New if</h3>
+  @if (false) {
+  <p>It is true</p>
+  } @else {
+  <p>It is false</p>
+  }
 </div>
